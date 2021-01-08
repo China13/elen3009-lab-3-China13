@@ -3,6 +3,9 @@
 
 #include "date.h"
 
+Date::Date(int day, Month month, int year):day_{day}, month_{month}, year_{year}
+{
+}
 int Date::day() const
 {
 	return day_;
@@ -31,27 +34,27 @@ bool Date::isLeapYear() const
 int Date::daysInMonth() const
 {
 	switch (month_) {
-		case Month::January: 
-		case Month::March: 
-		case Month::May: 
+		case Month::January:
+		case Month::March:
+		case Month::May:
 		case Month::July:
-		case Month::August: 
-		case Month::October: 
+		case Month::August:
+		case Month::October:
 		case Month::December:
-			return 31;	
-		case Month::April: 
-		case Month::June: 
+			return 31;
+		case Month::April:
+		case Month::June:
 		case Month::September:
 		case Month::November:
-			return 30;	
+			return 30;
 		case Month::February:
 			if ( isLeapYear() ) return 29;
 			else return 28;
 		default:
-			// should never reach here 
+			// should never reach here
 			assert(false); // See: http://www.cplusplus.com/reference/cassert/assert/
             return -1;
-	}    
+	}
 }
 
 // Note, this standalone function is not part of the Date class

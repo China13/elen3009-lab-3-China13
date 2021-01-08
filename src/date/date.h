@@ -7,25 +7,26 @@
 #include <iostream>
 using namespace std;
 
-enum class Month 
+enum class Month
 {
-	January = 1, 
+	January = 1,
 	February,
-	March, 
+	March,
 	April,
 	May,
 	June,
-	July, 
-	August, 
+	July,
+	August,
 	September,
 	October,
-	November, 
+	November,
 	December
 };
-	
+
 class Date
 {
-public:	
+public:
+    Date(int day, Month month, int year);
 	// return the day of the month
 	int	day () const;
 	// return the month of the year
@@ -33,12 +34,12 @@ public:
 	// return the year
 	int year () const;
 	// return true if it is a leap-year, false if not
-	bool isLeapYear () const;	
+	bool isLeapYear () const;
 
 private:
 	// return the number of days in the month_
-	int	daysInMonth () const;	
-	
+	int	daysInMonth () const;
+
 	int	day_;
 	Month month_;
 	int	year_;
