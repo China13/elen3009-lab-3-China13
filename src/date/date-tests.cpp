@@ -86,6 +86,53 @@ TEST_CASE("Identical years, different days and months, are not equal dates"){
 // Exercise 2.4
 // Provide tests for a new member function of the Date class
 // which will increase the date by one day.
+TEST_CASE("A date increase by day"){
+    auto date_1 = Date{2, Month::August, 2000};
+    date_1.nextDay();
+    auto date_2 = Date{3, Month::August, 2000};
+
+    CHECK(date_1 == date_2);
+}
+
+TEST_CASE("Last day of the month, the next day is the begining of the new month"){
+    auto date_1 = Date{31, Month::August, 2000};
+    date_1.nextDay();
+    auto date_2 = Date{1, Month::September, 2000};
+
+    CHECK(date_1 == date_2);
+}
+
+TEST_CASE("Last day of the year, the next day is the begining of the new year"){
+    auto date_1 = Date{31, Month::December, 2000};
+    date_1.nextDay();
+    auto date_2 = Date{1, Month::January, 2001};
+
+    CHECK(date_1 == date_2);
+}
+
+TEST_CASE("A leap year, and the day is the 28th of February, the next day is the 29th of February."){
+    auto date_1 = Date{28, Month::February, 2020};
+    date_1.nextDay();
+    auto date_2 = Date{29, Month::February, 2020};
+
+    CHECK(date_1 == date_2);
+}
+
+TEST_CASE("A leap year, and the day is the 29th of February, the next day is the 1st of March 2020."){
+    auto date_1 = Date{28, Month::February, 2021};
+    date_1.nextDay();
+    auto date_2 = Date{1, Month::March, 2021};
+
+    CHECK(date_1 == date_2);
+}
+
+TEST_CASE("The day is the 28th of February 2021, the next day is the 1st of March 2021."){
+    auto date_1 = Date{28, Month::February, 2021};
+    date_1.nextDay();
+    auto date_2 = Date{1, Month::March, 2021};
+
+    CHECK(date_1 == date_2);
+}
 
 
 // Exercise 2.5

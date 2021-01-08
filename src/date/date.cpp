@@ -69,6 +69,28 @@ bool Date::operator==(const Date& rhs) const
    else return false;
 }
 
+void Date::nextDay()
+{
+    auto currday = day();
+    auto currMonth = static_cast<int>(month());
+    auto currYear = year();
+
+    if(currday < daysInMonth())
+    {
+        day_ = ++currday;
+    }
+    else if(currday == daysInMonth())
+     {
+       day_ = 1;
+       if(currMonth ==12)
+       {
+           month_ = static_cast<Month>(1);
+           year_ = ++currYear;
+       }else month_ = static_cast<Month>(++currMonth);
+     }
+
+}
+
 // Note, this standalone function is not part of the Date class
 void printDate(const Date& date)
 {
