@@ -5,6 +5,9 @@
 
 Date::Date(int day, Month month, int year):day_{day}, month_{month}, year_{year}
 {
+    if(year_ < 0) throw invalidDate_Year();
+    if ( static_cast<int>(month_) < 1  ||  static_cast<int>(month_) > 12  ) throw invalidDate_Month();
+    if((day_ <= 0)||(day_ > daysInMonth())) throw invalidDate_Day();
 }
 int Date::day() const
 {

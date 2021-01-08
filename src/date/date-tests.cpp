@@ -31,8 +31,26 @@ TEST_CASE("Valid Date is initialised correctly") {
 // verify that an exception is thrown when an attempt is made
 // to construct an invalid date. Think carefully about which
 // invalid dates to test.
+TEST_CASE("Date for invalid day, throws an exception"){
+CHECK_THROWS_AS(Date(-4, Month::January, 2000), invalidDate_Day);
+CHECK_THROWS_AS(Date(32, Month::January, 2000), invalidDate_Day);
+}
 
+TEST_CASE("Date for invalid month, throws an exception"){
+Month ChinaMonth1 = static_cast<Month>(-1);
+Month ChinaMonth2 = static_cast<Month>(13);
+CHECK_THROWS_AS(Date(4, ChinaMonth1, 2000), invalidDate_Month );
+CHECK_THROWS_AS(Date(4, ChinaMonth2, 2000), invalidDate_Month );
+}
 
+TEST_CASE("Date for invalid year, throws an exception"){
+CHECK_THROWS_AS(Date(4, Month::January, -2000), invalidDate_Year);
+}
+
+TEST_CASE("Date is leap year"){
+    CHECK_NOTHROW(Date(29, Month::February,2020));
+    CHECK_THROWS_AS(Date(29, Month::February, 2009), invalidDate_Day);
+}
 // Exercise 2.3
 //TEST_CASE("Identical Dates are Equal") {
 //    auto date_1 = Date{1, Month::January, 2000};

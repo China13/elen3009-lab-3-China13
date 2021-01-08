@@ -1,5 +1,6 @@
 #ifndef DATE_H
 #define DATE_H
+#define NDEBUG
 // date.h
 // class Date declaration
 
@@ -22,6 +23,10 @@ enum class Month
 	November,
 	December
 };
+
+class invalidDate_Day{};
+class invalidDate_Month{};
+class invalidDate_Year{};
 
 class Date
 {
