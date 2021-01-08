@@ -52,18 +52,37 @@ TEST_CASE("Date is leap year"){
     CHECK_THROWS_AS(Date(29, Month::February, 2009), invalidDate_Day);
 }
 // Exercise 2.3
-//TEST_CASE("Identical Dates are Equal") {
-//    auto date_1 = Date{1, Month::January, 2000};
-//    auto date_2 = Date{1, Month::January, 2000};
-//
-//    CHECK(date_1 == date_2);
-//}
+TEST_CASE("Identical Dates are Equal") {
+    auto date_1 = Date{1, Month::January, 2000};
+    auto date_2 = Date{1, Month::January, 2000};
+
+    CHECK(date_1 == date_2);
+}
 
 // Supply at least three additional tests for
 // the equality operator here, to ensure that
 // it is working correctly.
+TEST_CASE("Identical days, different years and months, are not equal dates"){
+    auto date_1 = Date{1, Month::February, 2001};
+    auto date_2 = Date{1, Month::January, 2000};
 
 
+    CHECK_FALSE(date_1 == date_2);
+}
+
+TEST_CASE("Identical months, different days and years, are not equal dates"){
+    auto date_1 = Date{2, Month::January, 2001};
+    auto date_2 = Date{1, Month::January, 2000};
+
+    CHECK_FALSE(date_1 == date_2);
+}
+
+TEST_CASE("Identical years, different days and months, are not equal dates"){
+    auto date_1 = Date{2, Month::August, 2000};
+    auto date_2 = Date{1, Month::January, 2000};
+
+    CHECK_FALSE(date_1 == date_2);
+}
 // Exercise 2.4
 // Provide tests for a new member function of the Date class
 // which will increase the date by one day.
