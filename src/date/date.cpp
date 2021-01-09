@@ -3,12 +3,29 @@
 
 #include "date.h"
 
+Date Date::default_{1, Month::January, 1900};
+
+Date::Date()
+{
+ this->day_ = default_.day();
+ this->month_ = default_.month();
+ this->year_ = default_.year();
+}
+
 Date::Date(int day, Month month, int year):day_{day}, month_{month}, year_{year}
 {
     if(year_ < 0) throw invalidDate_Year();
     if ( static_cast<int>(month_) < 1  ||  static_cast<int>(month_) > 12  ) throw invalidDate_Month();
     if((day_ <= 0)||(day_ > daysInMonth())) throw invalidDate_Day();
 }
+
+void Date::setDefaultDate(int day, Month month, int year)
+{
+ Date::default_.day_ = day;
+ Date::default_.month_ = month;
+ Date::default_.year_ = year;
+}
+
 int Date::day() const
 {
 	return day_;

@@ -138,3 +138,17 @@ TEST_CASE("The day is the 28th of February 2021, the next day is the 1st of Marc
 // Exercise 2.5
 // Write tests for the new default constructor and the
 // setDefaultDate method.
+TEST_CASE("Valid Default Date is initialised correctly") {
+	auto default_day = Date{};
+	CHECK(default_day.day() == 1);
+	CHECK(default_day.month() == Month::January);
+	CHECK(default_day.year() == 1900);
+}
+
+TEST_CASE("Valid Default Date can be changed by the new method") {
+	Date::setDefaultDate(13, Month::October, 1997);
+	auto default_day = Date{};
+	CHECK(default_day.day() == 13);
+	CHECK(default_day.month() == Month::October);
+	CHECK(default_day.year() == 1997);
+}

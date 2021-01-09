@@ -31,7 +31,11 @@ class invalidDate_Year{};
 class Date
 {
 public:
+    Date();
+
     Date(int day, Month month, int year);
+
+    static void setDefaultDate(int day, Month month, int year);
 	// return the day of the month
 	int	day () const;
 	// return the month of the year
@@ -51,6 +55,7 @@ private:
 	int	day_;
 	Month month_;
 	int	year_;
+	static Date default_;
 
 };
 
