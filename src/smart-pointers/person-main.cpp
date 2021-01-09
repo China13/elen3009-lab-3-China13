@@ -39,7 +39,7 @@ void printName3(shared_ptr<Person> person_ptr)
 
 int main()
 {
-    auto sandile_ptr = make_unique<Person>("Sandile",15);    
+    auto sandile_ptr = make_unique<Person>("Sandile",15);
 
     auto thabo_in_main = printName();
     cout << thabo_in_main.name() << endl;
@@ -47,8 +47,27 @@ int main()
     auto person_ptr_in_main = printName2();
     printName3(person_ptr_in_main);
 
-    sandile_ptr = make_unique<Person>("Sandile2",11);  
+    sandile_ptr = make_unique<Person>("Sandile2",11);
     cout << sandile_ptr->age() << endl;
+/*
+1.  (a) Thabo goes out of scope in line 24
+    (b) maryanne_ptr goes out of scope in line 31
+    (c) person_ptr goes out of scope in line 37
+    (d) sandile_ptr goes out of scope in line 54
+    (e) thabo_in_main goes out of scope in line 54
+    (f) person_ptr_in_main goes out of scope in line 54
+
+2.  (a) first sandile_ptr pointee memory is released on line 50
+    (b) person_ptr_in_main,maryanne_ptr and person_ptr pointee memory is released on line 54
+    (c) second sandile_ptr pointee memory is released on line 54
+
+3.  (a) sandile_ptr and person_ptr are not copied
+    (b) maryanne_ptr is copied two times
+    (c) person_ptr_in_main is copied once
+
+4.  (a) sandile_ptr will go out of scope first since the destructor of a pointer
+        will be called first as the object was created before thabo_in_main
+*/
 
     return 0;
 }
